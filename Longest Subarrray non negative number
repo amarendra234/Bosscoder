@@ -1,0 +1,20 @@
+class Solution {
+    /* Function that returns the longest subarray
+       of non-negative integers */
+  public:
+    int longestSubarry(vector<int>& arr) {
+        // write code here
+        int left=0,right=0;
+        int ans=INT_MIN;
+        while(right<arr.size()){
+            if(arr[right]<0){
+                if(left<=right){
+                    left=right+1;
+                }
+            }
+            ans=max(ans,right-left+1);
+            right++;
+        }
+        return ans;
+    }
+};
