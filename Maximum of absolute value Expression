@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int maxAbsValExpr(vector<int>& arr1, vector<int>& arr2) {
+        int max1=INT_MIN;
+        int min1=INT_MAX;
+        int max2=INT_MIN;
+        int min2=INT_MAX;
+        int max3=INT_MIN,min3=INT_MAX;
+        int max4=INT_MIN,min4=INT_MAX;
+        for(int i=0;i<arr1.size();i++){
+            int exp1=arr1[i]+arr2[i]+i;
+            int exp2=arr1[i]+arr2[i]-i;
+            int exp3=arr1[i]-arr2[i]+i;
+            int exp4=arr1[i]-arr2[i]-i;
+            max1=max(max1,exp1);
+            min1=min(min1,exp1);
+            max2=max(max2,exp2);
+            min2=min(min2,exp2);
+            max3=max(max3,exp3);
+            min3=min(min3,exp3);
+            max4=max(max4,exp4);
+            min4=min(min4,exp4);
+        }
+        int ans1=max((max1-min1),(max2-min2));
+        int ans2=max((max3-min3),(max4-min4));
+        return max(ans1,ans2);
+    }
+};
