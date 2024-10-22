@@ -1,0 +1,35 @@
+class Solution {
+public:
+   bool valid(vector<vector<int>>&mat,int row,int col){
+         int r=mat.size();
+         int c=mat[0].size();
+         int count=0;
+         for(int i=0;i<c;i++){
+            if(mat[row][i]){
+                count++;
+            }
+         }
+         for(int i=0;i<r;i++){
+            if(mat[i][col]){
+                count++;
+            }
+         }
+         return count==2;
+   }
+    int numSpecial(vector<vector<int>>& mat) {
+         int res=0;
+         int row=mat.size();
+         int col=mat[0].size();
+         for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(mat[i][j]){
+                    if(valid(mat,i,j)){
+                        res++;
+                    }
+                }
+            }
+         }
+
+         return res;
+    }
+};
