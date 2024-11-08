@@ -1,0 +1,25 @@
+ int window_size=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]<=k){
+                window_size++;
+            }
+        }
+        int need_to_swap=0;
+        for(int i=0;i<window_size;i++){
+            if(arr[i]>k){
+                need_to_swap++;
+            }
+        }
+        int ans=need_to_swap;
+        int start=0;
+        for(int i=window_size;i<n;i++){
+            if(arr[i]>k){
+                need_to_swap++;
+            }
+            if(arr[start]>k){
+                need_to_swap--;
+            }
+            ans=min(ans,need_to_swap);
+            start++;
+        }
+        return ans;
