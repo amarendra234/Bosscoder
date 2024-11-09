@@ -1,0 +1,22 @@
+class EvenOddBit {
+public:
+     vector<int> solve(int N) {
+          int even=0,odd=0;
+          vector<int>ans;
+		for(int i=0;i<32;i++){
+               if(i%2){
+                    if(N&(1<<i)){
+                         odd++;
+                    }
+               }else{
+                    if(N&(1<<i)){
+                         even++;
+                    }
+               }
+              
+          }
+          ans.push_back(even);
+          ans.push_back(odd);
+          return ans;
+     }
+};
