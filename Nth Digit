@@ -1,0 +1,44 @@
+class NthDigit {
+public:
+    long long int no_of_digit(long long int mid){
+    long long int low=10;
+    long long int high=99;
+    long long int total_digit=min(mid,9ll);
+    long long int digit=2;
+      while(mid>=low){
+           high=min(high,mid);
+           long long int val=(high-low)+1;
+           val*=digit;
+           total_digit+=val;
+           low*=10;
+           high=(low*10)-1;
+           digit++;
+
+      }
+      return total_digit;
+    }
+    int solve(int n) {
+        typedef long long ll;
+        ll l=1;
+        ll r=n;
+        ll ans=0;
+        while(l<=r){
+            ll mid=l+(r-l)/2;
+            if(no_of_digit(mid)>=ll(n)){
+                ans=mid;
+                r=mid-1;
+            }else{
+               l=mid+1;
+            }
+        }
+        long long int digit=no_of_digit(ans-1);
+        string res=to_string(ans);
+        for(int i=0;i<res.size();i++){
+            digit++;
+            if(digit==n){
+                return res[i]-'0';
+            }
+        }
+        return (int)ans;
+    }
+};
