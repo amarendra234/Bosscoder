@@ -1,0 +1,35 @@
+class Solution {
+public:
+    typedef long long ll;
+    bool isvalid(vector<int>pos,long long int mid,int m){
+        ll count=1;
+        ll pre=pos[0];
+        for(int i=1;i<pos.size();i++){
+            if(pos[i]-pre>=mid){
+                pre=pos[i];
+                count++;
+            }
+            if(count>=m){
+                return true;
+            }
+        }
+        return false;
+    }
+    int maxDistance(vector<int>& position, int m) {
+        sort(position.begin(),position.end());
+       
+        ll l=1;
+        ll r=position[position.size()-1];
+        ll ans=0;
+        while(l<=r){
+            ll mid=l+(r-l)/2;
+            if(isvalid(position,mid,m)){
+                l=mid+1;
+                ans=mid;
+            }else{
+                r=mid-1;
+            }
+        }
+        return int(ans);
+    }
+};
