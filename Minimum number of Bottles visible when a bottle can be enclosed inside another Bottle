@@ -1,0 +1,12 @@
+class MinimumBottleVisible {
+public:
+     int count(vector<int> input) {
+		unordered_map<int,int>umap;
+          int ans=0;
+          for(int i=0;i<input.size();i++){
+               umap[input[i]]++;
+               ans=max(ans,umap[input[i]]);
+          }
+          return ans;
+     }
+};
