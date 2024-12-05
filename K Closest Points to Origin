@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<vector<int>> kClosest(vector<vector<int>>& input, int k) {
+        vector<vector<int>>ans;
+          priority_queue<pair<double,pair<int,int>>>pq;
+          for(int i=0;i<input.size();i++){
+               int x=input[i][0]*input[i][0];
+               int y=input[i][1]*input[i][1];
+               double res=sqrt(x+y);
+               if(pq.size()<k){
+                    pq.push({res,{input[i][0],input[i][1]}});
+               }else{
+                    if(pq.top().first>res){
+                         pq.pop();
+                         pq.push({res,{input[i][0],input[i][1]}});
+                    }
+               }
+          }
+          
+          while(pq.size()>0){
+               int x=pq.top().second.first;
+               int y=pq.top().second.second;
+               vector<int>temp;
+               temp.push_back(x);
+               temp.push_back(y);
+               pq.pop();
+               ans.push_back(temp);
+          }
+
+
+          return ans;
+    }
+};
