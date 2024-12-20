@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Minimize {
+public:
+     int solve(vector<int> input1,vector<int> input2, vector<int> input3) {
+		priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+          pq.push({input1[0],{0,0}});
+          pq.push({input2[0],{0,1}});
+          pq.push({input3[0],{0,2}});
+          int max_val=max(input1[0],max(input2[0],input3[0]));
+          int res=max_val-pq.top().first;
+          while(true){
+               int min_val=pq.top().first;
+               int index=pq.top().second.first;
+               int arr=pq.top().second.second;
+                int diff=max_val-min_val;
+               res=min(res,diff);
+               index++;
+               pq.pop();
+               if(arr==0){
+                   if(index<input1.size()){
+                      max_val=max(input1[index],max_val);
+                      pq.push({input1[index],{index,arr}});
+                   }else{
+                    break;
+                   }
+               }else if(arr==1){
+                    if(index<input2.size()){
+                        max_val=max(input2[index],max_val);
+                        pq.push({input2[index],{index,arr}});
+                    }else{
+                         break;
+                    }
+               }     
+               else{
+                    if(index<input3.size()){
+                         max_val=max(max_val,input3[index]);
+                         pq.push({input3[index],{index,arr}});
+                    }else{
+                         break;
+                    }
+               }
+              
+              }
+     
+
+
+          return res;
+     }
+};
