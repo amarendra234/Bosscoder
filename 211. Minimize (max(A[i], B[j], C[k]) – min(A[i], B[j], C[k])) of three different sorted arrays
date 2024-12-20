@@ -1,0 +1,25 @@
+class Minimize {
+public:
+     int solve(vector<int> input1,vector<int> input2, vector<int> input3) {
+		int ans=INT_MAX;
+          int i=0,j=0,k=0;
+          while(i<input1.size() and j<input2.size() and k<input3.size()){
+               int max_val=max(input1[i],max(input2[j],input3[k]));
+               int min_val=min(input1[i],min(input2[j],input3[k]));
+               int diff=max_val-min_val;
+               ans=min(ans,diff);
+               if(input1[i]==min_val){
+                    i++;
+               }
+               if(input2[j]==min_val){
+                    j++;
+               }
+               if(input3[k]==min_val){
+                    k++;
+               }
+          }
+
+
+          return ans;
+     }
+};
