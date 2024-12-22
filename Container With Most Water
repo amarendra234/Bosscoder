@@ -1,0 +1,17 @@
+class ContainerMostWater {
+public:
+     int solve(vector<int> input) {
+		int left=0,right=input.size()-1;
+          int res=INT_MIN;
+          while(left<right){
+              int  ans=min(input[left],input[right])*(right-left);
+               res=max(res,ans);
+               if(input[left]>input[right]){
+                    right--;
+               }else{
+                    left++;
+               }
+          }
+          return res;
+     }
+};
