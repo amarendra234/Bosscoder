@@ -1,7 +1,11 @@
-	int n=input.size();
+class Solution {
+public:
+    int maxPoints(vector<vector<int>>& input) {
+         int n=input.size();
           int max_line=1;
           for(int i=0;i<n;i++){
                unordered_map<double,int>count;
+               int linear_point=0;
                for(int j=0;j<n;j++){
                     if(i!=j){
                          int x1=input[i][0];
@@ -13,8 +17,13 @@
                               count[point]++;
                               max_line=max(max_line,count[point]+1);
 
+                         }else{
+                            linear_point++;
+                            max_line=max(max_line,linear_point+1);
                          }
                     }
                }
           }
           return max_line;
+    }
+};
