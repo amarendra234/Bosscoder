@@ -1,0 +1,18 @@
+class Temperatures {
+public:
+     vector<int> temperatures(vector<int> input) {
+		// finding next greater element;
+          vector<int>ans(input.size(),0);
+          stack<int>st;
+          for(int i=input.size()-1;i>=0;i--){
+               while(!st.empty() and input[st.top()]<=input[i]){
+                     st.pop();
+               }
+               if(!st.empty()){
+                    ans[i]=st.top()-i;
+               }
+               st.push(i);
+          }
+          return ans;
+     }
+};
