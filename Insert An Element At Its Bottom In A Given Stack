@@ -1,0 +1,17 @@
+#include <bits/stdc++.h> 
+
+void updateStack(stack<int>&st,int x){
+    if(st.size()==0){
+        st.push(x);
+        return;
+    }
+    int val=st.top();
+    st.pop();
+    updateStack(st,x);
+    st.push(val);
+}
+stack<int> pushAtBottom(stack<int>& myStack, int x) 
+{
+    updateStack(myStack,x);
+    return myStack;
+}
