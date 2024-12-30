@@ -1,0 +1,25 @@
+
+void insertAtBottom(stack<int>&st,int x){
+    if(st.size()==0){
+        st.push(x);
+        return;
+    }
+    int val=st.top();
+    st.pop();
+    insertAtBottom(st,x);
+    st.push(val);
+}
+void updateStack(stack<int>&st){
+    if(st.size()==0){
+        return;
+    }
+    int val=st.top();
+    st.pop();
+    updateStack(st);
+    insertAtBottom(st,val);
+}
+void reverseStack(stack<int> &stack) {
+    // Write your code her
+
+    updateStack(stack);
+}
