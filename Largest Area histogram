@@ -1,0 +1,39 @@
+class LargestRectangleHistogram {
+public:
+     int solve(vector<int> input) {
+		int n=input.size();
+          vector<int>nse(n,n);
+          vector<int>lse(n,-1);
+          // next greater element
+           stack<int>st;
+           for(int i=n-1;i>=0;i--){
+               if(!st.empty() and input[st.top()]>=input[i]){
+                    st.pop();
+               }
+               if(!st.empty()){
+                    nse[i]=st.top();
+               }
+               st.push(i);
+           }
+           while(st.size()>0){
+               st.pop();
+           }
+           for(int i=0;i<n;i++){
+               if(!st.empty() and input[st.top()]>=input[i]){
+                    st.pop();
+               }
+               if(!st.empty()){
+                    lse[i]=st.top();
+               }
+               st.push(i);
+           }
+           int largest_area=0;
+           for(int i=0;i<n;i++){
+               int right_small=nse[i];
+               int left_small=lse[i];
+               int width=(right_small-left_small)-1;
+               largest_area=max(largest_area,width*input[i]);
+           }
+           return largest_area;
+     }
+};
