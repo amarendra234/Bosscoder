@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    int checkRedundancy(string s) {
+        stack<char>st;
+        for(int i=0;i<s.length();i++){
+            if(s[i]==')'){
+                if(st.empty()){
+                    return true;
+                }
+                int count=0;
+                while(!st.empty() and st.top()!='('){
+                     count++;
+                     st.pop();
+                }
+                st.pop();
+                count++;
+                if(count<4){
+                    return true;
+                }
+                char ch='d';
+                st.push(ch);
+            }else{
+                st.push(s[i]);
+            }
+        }
+        return false;
+    }
+};
