@@ -1,0 +1,25 @@
+#include <bits/stdc++.h> 
+void SortAStack(stack<int>&st){
+	if(st.size()==0){
+		return;
+	}
+	int val=st.top();
+	st.pop();
+	SortAStack(st);
+	stack<int>temp;
+	while(!st.empty() and val<st.top()){
+		int new_val=st.top();
+		st.pop();
+		temp.push(new_val);
+	}
+	st.push(val);
+	while(!temp.empty()){
+		st.push(temp.top());
+		temp.pop();
+	}
+}
+void sortStack(stack<int> &stack)
+{
+	
+	SortAStack(stack);
+}
