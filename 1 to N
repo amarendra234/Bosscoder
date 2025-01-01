@@ -1,0 +1,15 @@
+class Generate {
+public:
+     void genrate1_n(int n,vector<int>&ans){
+          if(n==0){
+               return;
+          }
+          genrate1_n(n-1,ans);
+          ans.push_back(n);
+     }
+     vector<int> solve(int N) {
+		vector<int>ans;
+          genrate1_n(N,ans);
+          return ans;
+     }
+};
