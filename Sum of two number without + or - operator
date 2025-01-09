@@ -1,0 +1,14 @@
+class Sum {
+public:
+	int sum(int a,int b) {
+    		int sum=0;
+            int and_operator=0;
+            while(b!=0){
+                  sum=a^b;
+                  and_operator=(a&b)<<1;
+                  a=sum;
+                  b=and_operator;
+            }
+            return sum;
+      }
+};
