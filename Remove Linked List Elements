@@ -1,0 +1,39 @@
+/* Linked List Node */
+struct Node {
+    int data;
+    Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+    
+};
+
+class Solution {
+public:
+     struct Node* solve(struct Node *head, int val)
+    {
+        while(head!=NULL and head->data==val){
+            head=head->next;
+        }
+        if(head==NULL){
+            return head;
+        }
+        Node* pre=head;
+        Node* nextPointer=head;
+        while(nextPointer!=NULL){
+            if(nextPointer->data==val){
+                while(nextPointer!=NULL and nextPointer->data==val){
+                    nextPointer=nextPointer->next;
+                }
+                pre->next=nextPointer;
+            }
+            pre=nextPointer;
+            if(nextPointer!=NULL){
+                nextPointer=nextPointer->next;
+            }
+        }
+        return head;
+    }
+};
