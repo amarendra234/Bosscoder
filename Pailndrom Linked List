@@ -1,0 +1,62 @@
+/* Linked List Node */
+struct Node {
+    int data;
+    Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+    
+}; 
+
+class Palindrome {
+public:
+     Node* findMid(Node* head){
+        Node* slow=head;
+        Node* fast=head;
+        while(fast!=NULL and fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+     }
+     Node* Reverse(Node* head){
+        if(head==NULL or head->next==NULL){
+            return head;
+        }
+        Node* newHead=Reverse(head->next);
+        head->next->next=head;
+        head->next=NULL;
+        return newHead;
+     }
+      int CountNode(Node* head){
+        Node* temp=head;
+        int count=0;
+        while(temp!=NULL){
+            count++;
+            temp=temp->next;
+        }
+        return count;
+    }
+     bool solve(Node *head) {
+		if(head==NULL or head->next==NULL){
+            return true;
+        }
+        Node* mid=findMid(head);
+        int count=CountNode(head);
+        mid=count%2==0?mid:mid->next;
+        Node* newHead=Reverse(mid);
+        Node* entryHead=head;
+        Node* middleHead=newHead;
+        while(middleHead!=NULL){
+            if(entryHead->data!=middleHead->data){
+                return false;
+            }
+            entryHead=entryHead->next;
+            middleHead=middleHead->next;
+        }
+        return true;
+
+     }
+};
