@@ -1,0 +1,29 @@
+/* Linked List Node */
+struct Node {
+    int data;
+    Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+    
+};
+
+class ReverseList {
+public:
+
+    Node* Reverse(Node* head){
+        if(head==NULL or head->next==NULL){
+            return head;
+         }
+         Node* newHead=reverseList(head->next);
+         head->next->next=head;
+         head->next=NULL;
+         return newHead;
+    }
+     struct Node* reverseList(struct Node *head)
+    {
+         return Reverse(head);
+    }
+};
