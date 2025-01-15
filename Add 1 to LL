@@ -1,0 +1,41 @@
+class Solution {
+  public:
+   Node* reverseLL(Node* head){
+       if(head==NULL or head->next==NULL){
+           return head;
+       }
+       Node* newHead=reverseLL(head->next);
+       head->next->next=head;
+       head->next=NULL;
+       return newHead;
+   }
+    Node* addOne(Node* head) {
+        int carry=0;
+        Node* newHead=reverseLL(head);
+        Node* ansHead=NULL;
+        Node* pre=NULL;
+        while(newHead!=NULL){
+            if(ansHead==NULL){
+                int sum=newHead->data+1+carry;
+                Node* temp=new Node(sum%10);
+                ansHead=temp;
+                pre=temp;
+                carry=sum/10;
+            }else{
+                int sum=newHead->data+carry;
+                Node* temp=new Node(sum%10);
+                pre->next=temp;
+                pre=pre->next;
+                carry=sum/10;
+            }
+            newHead=newHead->next;
+        }
+        if(carry!=0){
+            Node* temp=new Node(carry);
+            pre->next=temp;
+            pre=pre->next;
+        }
+        Node* ans=reverseLL(ansHead);
+        return ans;
+    }
+};
