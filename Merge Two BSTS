@@ -1,0 +1,74 @@
+/*************************************************************
+
+    Following is the Binary Tree node structure:
+
+    class TreeNode
+    {
+    public:
+        int data;
+        TreeNode *left, *right;
+        TreeNode() : data(0), left(NULL), right(NULL) {}
+        TreeNode(int x) : data(x), left(NULL), right(NULL) {}
+        TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
+    };
+
+*************************************************************/
+
+vector<int> mergeBST(TreeNode *root1, TreeNode *root2)
+{
+             vector<int>ans;
+            stack<TreeNode*>st1;
+            stack<TreeNode*>st2;
+            // insert inorder both in stack1 and stack2
+            while(root1!=NULL){
+                 st1.push(root1);
+                 root1=root1->left;
+            }
+            while(root2!=NULL){
+                st2.push(root2);
+                root2=root2->left;
+            }
+            while(st1.size()>0 and st2.size()>0){
+                  if(st1.top()->data>=st2.top()->data){
+                          TreeNode* temp=st2.top();
+                          st2.pop();
+                          ans.push_back(temp->data);
+                          temp=temp->right;
+                          while(temp!=NULL){
+                              st2.push(temp);
+                              temp=temp->left;
+                          }
+                  }else{
+                         TreeNode* temp=st1.top();
+                          st1.pop();
+                          ans.push_back(temp->data);
+                          temp=temp->right;
+                          while(temp!=NULL){
+                              st1.push(temp);
+                              temp=temp->left;
+                          }
+                  }
+            }
+            while(st1.size()>0){
+                TreeNode* temp=st1.top();
+                st1.pop();
+                ans.push_back(temp->data);
+                temp=temp->right;
+                while(temp!=NULL){
+                    st1.push(temp);
+                    temp=temp->left;
+                }
+            }
+            while(st2.size()>0){
+                TreeNode* temp=st2.top();
+                st2.pop();
+                ans.push_back(temp->data);
+                temp=temp->right;
+                while(temp!=NULL){
+                    st2.push(temp);
+                    temp=temp->left;
+                }
+            }
+
+            return ans;
+}
