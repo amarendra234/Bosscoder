@@ -1,0 +1,14 @@
+class Solution {
+public:
+     int solve(Node* root, int low, int high) {
+        if(root==NULL){
+            return 0;
+        }
+        if(root->data>low and root->data>high){
+            return solve(root->left,low,high);
+        }else if(root->data<low and root->data<high){
+            return solve(root->right,low,high);
+        }
+        return root->data+solve(root->left,low,high)+solve(root->right,low,high);
+     }
+};
