@@ -1,0 +1,18 @@
+vector<pair<int,int>>v;
+        int n=people.size();
+        for(int i=0;i<n;i++){
+            v.push_back({people[i][0],people[i][1]});
+        }
+        sort(v.begin(),v.end(),[](const pair<int,int>&a,const pair<int,int>&b){
+              if(a.first!=b.first){
+                return a.first>b.first;
+              }
+              return a.second<b.second;
+        });
+        vector<vector<int>>ans;
+        for(auto entry:v){
+            pair<int,int>a=entry;
+
+            ans.insert(ans.begin()+a.second,{a.first,a.second});
+        }
+        return ans;
