@@ -1,0 +1,22 @@
+class LargestSumAfterKNegations {
+public:
+     int solve(vector<int> input,int k) {
+		sort(input.begin(),input.end());
+          for(int i=0;i<input.size();i++){
+               if(input[i]<0 and k>0){
+                    input[i]*=-1;
+                    k--;
+               }
+          }
+         int sum=0;
+         int min_val=INT_MAX;
+         for(int i=0;i<input.size();i++){
+            sum+=input[i];
+            min_val=min(min_val,abs(input[i]));
+         }
+         if(k%2==0){
+            return sum;
+         }
+         return sum-(2*min_val);
+     }
+};
