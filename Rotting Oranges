@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        int n=grid.size();
+        int m=grid[0].size();
+        queue<pair<int,pair<int,int>>>q; // {x,y,times to rotton current cell}
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==2){
+                    q.push({i,{j,0}});
+                }
+            }
+        }
+        int minTimeToRotton=0;
+        int x_axis[]={-1,1,0,0};
+        int y_axis[]={0,0,-1,1};
+        while(q.size()>0){
+            int x=q.front().first;
+            int y=q.front().second.first;
+            int steps=q.front().second.second;
+            minTimeToRotton=max(minTimeToRotton,steps);
+            q.pop();
+            for(int i=0;i<4;i++){
+                int lx=x_axis[i]+x;
+                int ly=y_axis[i]+y;
+                if(lx>=0 and lx<n and ly>=0 and ly<m and grid[lx][ly]==1){
+                    q.push({lx,{ly,steps+1}});
+                    grid[lx][ly]=2;
+                }
+            }
+
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1){
+                    return -1;
+                }
+            }
+        }
+        return minTimeToRotton;
+    }
+};
